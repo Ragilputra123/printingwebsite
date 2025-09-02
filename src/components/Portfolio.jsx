@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, MessageCircle } from "lucide-react";
 
 // Import CSS Swiper
 import "swiper/css";
@@ -33,6 +33,12 @@ function Portfolio() {
       image: "/assets/packaging.jpg",
     },
   ];
+
+  // Nomor WhatsApp tujuan
+  const whatsappNumber = "+6285721378291"; // ganti dengan nomor kamu
+
+  // Pesan default WhatsApp
+  const defaultMessage = "Halo, saya tertarik untuk order";
 
   return (
     <section className="py-16 bg-gray-100">
@@ -77,25 +83,51 @@ function Portfolio() {
               1024: { slidesPerView: 3 },
             }}
           >
-            {projects.map((project) => (
-              <SwiperSlide key={project.id}>
-                <motion.div
-                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-56 object-cover"
-                  />
-                  <div className="p-4 text-center">
-                    <h3 className="text-lg font-semibold text-gray-700">
-                      {project.title}
-                    </h3>
-                  </div>
-                </motion.div>
-              </SwiperSlide>
-            ))}
+            {projects.map((project) => {
+              // Pesan WhatsApp otomatis
+              const message = `${defaultMessage} ${project.title}. Bisa dibantu?`;
+
+              // UTM parameters
+              const utmParams = new URLSearchParams({
+                utm_source: "portfolio_website",
+                utm_medium: "whatsapp_button",
+                utm_campaign: "portfolio_inquiry",
+                utm_content: `project_${project.id}`,
+              });
+
+              // Gabung link WA + pesan + UTM
+              const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                message
+              )}&${utmParams.toString()}`;
+
+              return (
+                <SwiperSlide key={project.id}>
+                  <motion.div
+                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-56 object-cover"
+                    />
+                    <div className="p-4 text-center">
+                      <h3 className="text-lg font-semibold text-gray-700 mb-3">
+                        {project.title}
+                      </h3>
+                      <a
+                        href={whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-full shadow hover:bg-green-700 transition"
+                      >
+                        <MessageCircle size={18} /> Hubungi via WhatsApp
+                      </a>
+                    </div>
+                  </motion.div>
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
       </div>
