@@ -14,10 +14,10 @@ function Hero() {
       {/* Konten */}
       <div className="relative z-10 max-w-3xl">
         <h2 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-          Layanan Cetak & Desain Profesional
+          Layanan Cetak & Stempel Flash Profesional
         </h2>
         <p className="mb-6 text-lg md:text-xl">
-          Photocopy • Pembuatan Buku • Stampel Perusahaan
+          Photocopy • Pembuatan Buku • Stampel Custom
         </p>
         <a
           href="#contact"

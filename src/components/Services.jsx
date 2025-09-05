@@ -10,34 +10,34 @@ import {
 
 const services = [
   {
-    title: "Stempel Warna",
-    desc: "Pembuatan stempel warna cepat & berkualitas.",
-    icon: <Stamp className="w-10 h-10" />,
+    title: "Stempel Flash & Warna",
+    desc: "Pembuatan stempel flash dan warna cepat, awet, dan berkualitas di Bandung.",
+    icon: <Stamp className="w-10 h-10" aria-label="Stempel Flash" />,
   },
   {
     title: "ID Card & Sticker",
-    desc: "Cetak ID Card, kartu nama, dan sticker custom.",
-    icon: <IdCard className="w-10 h-10" />,
+    desc: "Cetak ID Card, kartu nama, dan sticker custom dengan desain modern.",
+    icon: <IdCard className="w-10 h-10" aria-label="ID Card" />,
   },
   {
-    title: "Cetak & Print",
-    desc: "Print warna, textbook, hingga e-book dengan hasil maksimal.",
-    icon: <Printer className="w-10 h-10" />,
+    title: "Cetak & Print Dokumen",
+    desc: "Print dokumen warna, textbook, hingga e-book dengan hasil maksimal.",
+    icon: <Printer className="w-10 h-10" aria-label="Printer" />,
   },
   {
     title: "Jilid Buku",
-    desc: "Jilid plastik, kawat, hard cover, dan soft cover.",
-    icon: <BookOpen className="w-10 h-10" />,
+    desc: "Jilid plastik, spiral, kawat, hard cover, dan soft cover untuk kebutuhan sekolah & bisnis.",
+    icon: <BookOpen className="w-10 h-10" aria-label="Jilid Buku" />,
   },
   {
     title: "Scan & Laminating",
-    desc: "Scan dokumen & laminating rapi tahan lama.",
-    icon: <ScanLine className="w-10 h-10" />,
+    desc: "Layanan scan dokumen dan laminating agar lebih rapi dan tahan lama.",
+    icon: <ScanLine className="w-10 h-10" aria-label="Scan Dokumen" />,
   },
   {
     title: "Pas Photo",
-    desc: "Cetak foto resmi berbagai ukuran.",
-    icon: <Camera className="w-10 h-10" />,
+    desc: "Cetak foto resmi berbagai ukuran untuk kebutuhan administrasi.",
+    icon: <Camera className="w-10 h-10" aria-label="Pas Foto" />,
   },
 ];
 
@@ -51,11 +51,13 @@ function Services() {
 
       <div className="relative container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-          Layanan Kami
+          Layanan Jasa Printing & Stempel Flash di Bandung
         </h2>
         <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-          Semua kebutuhan cetak, jilid, foto, hingga stempel tersedia lengkap di
-          3R Photocopy & Stempel Warna.
+          3R Printing menyediakan berbagai layanan percetakan di Bandung, mulai
+          dari <strong>printing dokumen</strong>, <strong>jilid buku</strong>,
+          <strong> cetak ID card</strong>, hingga{" "}
+          <strong>stempel flash cepat dan berkualitas</strong>.
         </p>
 
         <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-8">

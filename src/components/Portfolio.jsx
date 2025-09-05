@@ -5,6 +5,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import { ArrowLeft, ArrowRight, MessageCircle } from "lucide-react";
 
+// Import gambar dari src/Assets
+import cetakbuku1 from "../Assets/cetakbuku1.png";
+import IdCard from "../Assets/IdCard.png";
+import Kartunama from "../Assets/Kartunama.png";
+import stempel from "../Assets/Stempel.png";
+
 // Import CSS Swiper
 import "swiper/css";
 import "swiper/css/navigation";
@@ -12,45 +18,33 @@ import "swiper/css/pagination";
 
 function Portfolio() {
   const projects = [
-    {
-      id: 1,
-      title: "Cetak Buku",
-      image: "/assets/book-print.jpg",
-    },
-    {
-      id: 2,
-      title: "Poster Promosi",
-      image: "/assets/poster-print.jpg",
-    },
-    {
-      id: 3,
-      title: "Kartu Nama",
-      image: "/assets/business-card.jpg",
-    },
-    {
-      id: 4,
-      title: "Packaging Makanan",
-      image: "/assets/packaging.jpg",
-    },
+    { id: 1, title: "Cetak Buku", image: cetakbuku1 },
+    { id: 2, title: "ID Card", image: IdCard },
+    { id: 3, title: "Kartu Nama", image: Kartunama },
+    { id: 4, title: "Stempel", image: stempel },
   ];
 
-  // Nomor WhatsApp tujuan
-  const whatsappNumber = "+6285721378291"; // ganti dengan nomor kamu
-
-  // Pesan default WhatsApp
+  const whatsappNumber = "6285721378291";
   const defaultMessage = "Halo, saya tertarik untuk order";
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section id="portfolio" className="py-16 bg-gray-100">
       <div className="container mx-auto px-6">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800"
+          className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Portofolio Kami
+          Portofolio Jasa Printing & Stempel Flash di Bandung
         </motion.h2>
+        <p className="text-center text-gray-600 max-w-2xl mx-auto mb-10">
+          Berikut contoh hasil pekerjaan <strong>3R Printing</strong>, mulai
+          dari cetak buku, kartu nama, poster promosi, hingga packaging. Semua
+          layanan <strong>jasa printing</strong> dan{" "}
+          <strong>stempel flash di Bandung</strong> kami kerjakan dengan
+          kualitas terbaik dan harga bersahabat.
+        </p>
 
         <div className="relative">
           {/* Tombol Navigasi */}
@@ -84,10 +78,7 @@ function Portfolio() {
             }}
           >
             {projects.map((project) => {
-              // Pesan WhatsApp otomatis
               const message = `${defaultMessage} ${project.title}. Bisa dibantu?`;
-
-              // UTM parameters
               const utmParams = new URLSearchParams({
                 utm_source: "portfolio_website",
                 utm_medium: "whatsapp_button",
@@ -95,7 +86,6 @@ function Portfolio() {
                 utm_content: `project_${project.id}`,
               });
 
-              // Gabung link WA + pesan + UTM
               const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
                 message
               )}&${utmParams.toString()}`;
@@ -108,7 +98,7 @@ function Portfolio() {
                   >
                     <img
                       src={project.image}
-                      alt={project.title}
+                      alt={`Portofolio ${project.title} - Jasa Printing Bandung`}
                       className="w-full h-56 object-cover"
                     />
                     <div className="p-4 text-center">
