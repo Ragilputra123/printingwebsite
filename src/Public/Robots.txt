@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://printingwebsite-qv9d-lvmszp2fh-ragil-putra-prasetyas-projects.vercel.app/sitemap.xml
