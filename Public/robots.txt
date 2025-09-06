@@ -1,3 +1,10 @@
 User-agent: *
 Allow: /
+
+# Block halaman yang tidak perlu diindeks
+Disallow: /404
+Disallow: /admin
+Disallow: /login
+Disallow: /register
+
 Sitemap: https://3rprinting-bandung.vercel.app/sitemap.xml
