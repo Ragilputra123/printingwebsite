@@ -1,58 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function BlogMain() {
-  const articles = [
+  const [search, setSearch] = useState("");
+
+  const posts = [
     {
-      title: "Cetak Banner Murah di Bandung",
-      slug: "/blog/banner-bandung",
+      title: "Tips Membuat Stempel Berkualitas",
+      slug: "stempel-tips",
       excerpt:
-        "Temukan jasa cetak banner murah di Bandung dengan hasil berkualitas tinggi. Cocok untuk promosi usaha, event, hingga kampanye produk.",
+        "Panduan praktis memilih dan membuat stempel agar hasil lebih rapi dan awet.",
+      category: "Percetakan",
     },
     {
-      title: "Tips Membuat Stempel Flash Awet",
-      slug: "/blog/stempel-tips",
+      title: "Jilid Murah & Rapi di Bandung",
+      slug: "jilid-bandung",
       excerpt:
-        "Ingin stempel flash tahan lama? Ikuti tips perawatan sederhana ini agar stempel selalu tajam dan awet digunakan.",
+        "Tempat jilid terbaik di Bandung dengan hasil rapi, cepat, dan harga terjangkau.",
+      category: "Percetakan",
     },
     {
-      title: "Layanan Jilid Buku di Bandung",
-      slug: "/blog/jilid-bandung",
+      title: "Desain Kartu Nama yang Menarik",
+      slug: "kartu-nama",
       excerpt:
-        "Kami menyediakan layanan jilid buku profesional di Bandung, mulai dari hard cover, soft cover, spiral, hingga jilid lakban.",
+        "Tips membuat kartu nama yang profesional agar mudah diingat klien.",
+      category: "Desain",
     },
   ];
 
-  return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-6 max-w-4xl">
-        <h1 className="text-3xl md:text-4xl font-bold mb-10 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-          Blog Artikel 3R Printing
-        </h1>
+  const categories = ["Semua", "Percetakan", "Desain"];
 
-        <div className="space-y-8">
-          {articles.map((article, index) => (
-            <div
-              key={index}
-              className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition"
-            >
-              <h2 className="text-2xl font-semibold mb-3 text-gray-800">
-                <Link to={article.slug} className="hover:text-blue-600">
-                  {article.title}
-                </Link>
-              </h2>
-              <p className="text-gray-600 mb-4">{article.excerpt}</p>
-              <Link
-                to={article.slug}
-                className="inline-block text-blue-600 font-semibold hover:underline"
-              >
-                Baca Selengkapnya →
-              </Link>
-            </div>
-          ))}
+  const [selectedCategory, setSelectedCategory] = useState("Semua");
+
+  const filteredPosts = posts.filter(
+    (post) =>
+      (selectedCategory === "Semua" || post.category === selectedCategory) &&
+      post.title.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div className="container mx-auto px-6 py-12 grid md:grid-cols-4 gap-8">
+      {/* Sidebar */}
+      <aside className="md:col-span-1">
+        <div className="mb-8">
+          <input
+            type="text"
+            placeholder="Cari artikel..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full border rounded-lg px-4 py-2 focus:ring focus:ring-indigo-200"
+          />
         </div>
-      </div>
-    </section>
+        <div>
+          <h2 className="font-semibold mb-4">Kategori</h2>
+          <ul className="space-y-2">
+            {categories.map((cat) => (
+              <li key={cat}>
+                <button
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`w-full text-left px-3 py-1 rounded-lg transition ${
+                    selectedCategory === cat
+                      ? "bg-indigo-600 text-white"
+                      : "hover:bg-indigo-100"
+                  }`}
+                >
+                  {cat}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+
+      {/* Konten Blog */}
+      <section className="md:col-span-3">
+        <h1 className="text-3xl font-bold mb-6">Blog Kami</h1>
+        {filteredPosts.length === 0 ? (
+          <p className="text-gray-500">Artikel tidak ditemukan.</p>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-6">
+            {filteredPosts.map((post) => (
+              <div
+                key={post.slug}
+                className="p-6 rounded-2xl shadow-md bg-white hover:shadow-lg transition"
+              >
+                <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+                <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                <Link
+                  to={`/blog/${post.slug}`}
+                  className="text-indigo-600 hover:text-indigo-800 font-medium"
+                >
+                  Baca selengkapnya →
+                </Link>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+    </div>
   );
 }
 
