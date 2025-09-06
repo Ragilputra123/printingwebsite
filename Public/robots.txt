@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://3rprinting.vercel.app/sitemap.xml
+Sitemap: https://3rprinting-bandung.vercel.app/sitemap.xml
