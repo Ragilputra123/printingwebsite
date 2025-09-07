@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
-import logo from "../Assets/logo.png";
+import logofix from "../Assets/logofix.png";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,15 +16,14 @@ function Navbar() {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <nav
+      aria-label="Navigasi utama"
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-white/90 shadow-md py-2"
@@ -34,26 +32,26 @@ function Navbar() {
     >
       <div className="container mx-auto flex justify-between items-center px-6 transition-all duration-300">
         {/* Logo */}
-        <Link to="/" className="flex-shrink-0">
+        <a href="/" className="flex-shrink-0">
           <img
-            src={logo}
-            alt="Logo"
+            src={logofix}
+            alt="3R Printing Bandung - Jasa Percetakan & Digital Printing"
             className={`transition-all duration-300 ${
               isScrolled ? "h-12 md:h-14" : "h-16 md:h-20"
             }`}
           />
-        </Link>
+        </a>
 
         {/* Menu Desktop */}
         <ul className="hidden md:flex space-x-8 font-medium">
           {navItems.map((item) => (
             <li key={item.href} className="relative group">
-              <Link
-                to={item.href}
+              <a
+                href={item.href}
                 className="text-gray-700 hover:text-indigo-600 transition-colors duration-300"
               >
                 {item.label}
-              </Link>
+              </a>
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
             </li>
           ))}
@@ -71,20 +69,20 @@ function Navbar() {
 
       {/* Menu Mobile */}
       <div
-        className={`md:hidden bg-white shadow-md overflow-hidden transition-all duration-500 ${
+        className={`md:hidden bg-white shadow-md overflow-hidden transition-all duration-500 ease-in-out ${
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <ul className="flex flex-col items-center space-y-4 py-6">
           {navItems.map((item) => (
             <li key={item.href}>
-              <Link
-                to={item.href}
+              <a
+                href={item.href}
                 onClick={() => setIsOpen(false)}
                 className="hover:text-indigo-600 transition-colors"
               >
                 {item.label}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
